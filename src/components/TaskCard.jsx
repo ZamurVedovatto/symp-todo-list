@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Checklist from './Checklist'
+import { formatDistanceToNow } from 'date-fns'
+// import { pt } from 'date-fns/locale'
 
 import { Button, Card } from 'react-bootstrap'
 
@@ -25,14 +27,14 @@ const TaskWrapper = styled.div`
   }
 `
 
-function Task({task}) {
+function TaskCard({task}) {
   console.log(task)
 
   return (
     <TaskWrapper>
       <Card style={{ width: '100%' }}>
         <div className="task-dates">
-          <span>Started on: {task.startedDate}</span>
+          <span>Started {formatDistanceToNow(new Date(task.startedDate), { addSuffix: true, includeSeconds: false })} ({task.startedDate})</span>
           { task.done && <span>Finished on: {task.finishedDate}</span> }
         </div>
         <Card.Body>
@@ -54,4 +56,4 @@ function Task({task}) {
   )
 }
 
-export default Task
+export default TaskCard

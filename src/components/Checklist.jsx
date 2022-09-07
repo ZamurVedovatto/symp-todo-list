@@ -31,6 +31,7 @@ function Checklist({listData}) {
   const [checked, setChecked] = useState([]);
 
   const handleCheck = (event) => {
+    console.log(event)
     var updatedList = [...checked];
     if (event.target.checked) {
       updatedList = [...checked, event.target.value];
@@ -49,14 +50,17 @@ function Checklist({listData}) {
           <Form.Check
             key={index}
             type="checkbox"
-            id={`default-${item}`}
-            label={`default ${item.title}`}
+            id={`${item}`}
+            label={`${item.title}`}
             checked={isChecked(item)}
+            onChange={handleCheck}
           />
         ))}
       </div>
     </ChecklistWrapper>
   )
 }
+
+// https://stackoverflow.com/questions/54809604/failed-prop-type-you-provided-a-checked-prop-to-a-form-field-without-an-onch
 
 export default Checklist

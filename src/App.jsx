@@ -1,66 +1,131 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'
+import symtodoLogo from './assets/logo3.png'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/styles.css'
 
-import ListGroup from 'react-bootstrap/ListGroup';
-
-import Form from 'react-bootstrap/Form'
+import styled from 'styled-components'
+import { Navbar, Container } from 'react-bootstrap'
 
 import TaskList from './components/TaskList'
+import TaskDetails from './components/TaskDetails'
+
+const AppWrapper = styled.section`
+.navbar {
+  background-color: #425C9C;
+  .navbar-brand {
+    img {
+      border: 1px solid #d3d3d357;
+      border-radius: 6px;
+    }
+  }
+}
+.main-content {
+  padding: 1rem;
+}
+`
+
+const tasksData = [
+  {
+    id: 1,
+    title: 'FT: Refocus Button That Opened Modal',
+    ptUrl: 'https://www.pivotaltracker.com/n/projects/2198983/stories/183169458',
+    mrUrl: 'https://gitlab.symplicity.com/symplicity/advocate/-/merge_requests/2093',
+    boxUrl: 'https://zvedovatto.advocate.74dev.symplicity.com/',
+    todos: [
+        {
+          title: 'fix buttons position',
+          done: true
+        },
+        {
+          title: 'fix buttons position',
+          done: false
+        },
+        {
+          title: 'fix buttons position',
+          done: false
+        },
+    ],
+    startedDate: '08/08/2022',
+    done: true,
+    finishedDate: '20/09/2022',
+    status: [
+      {
+        title: 'awaiting christians code review 1',
+        done: true
+      },
+      {
+        title: 'fixing code review ',
+        done: true
+      },
+      {
+        title: 'awaiting christians code review 2',
+        done: false
+      },
+    ],
+  },
+  {
+    id: 1,
+    title: 'FT: Refocus Button That Opened Modal',
+    ptUrl: 'https://www.pivotaltracker.com/n/projects/2198983/stories/183169458',
+    mrUrl: 'https://gitlab.symplicity.com/symplicity/advocate/-/merge_requests/2093',
+    boxUrl: 'https://zvedovatto.advocate.74dev.symplicity.com/',
+    todos: [
+        {
+          title: 'fix buttons position',
+          done: true
+        },
+        {
+          title: 'fix buttons position',
+          done: false
+        },
+        {
+          title: 'fix buttons position',
+          done: false
+        },
+    ],
+    startedDate: '08/28/2022',
+    done: false,
+    finishedDate: '',
+    status: [
+      {
+        title: 'awaiting christians code review 1',
+        done: true
+      },
+      {
+        title: 'fixing code review ',
+        done: true
+      },
+      {
+        title: 'awaiting christians code review 2',
+        done: false
+      },
+    ],
+  }
+]
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <div className="navbar">
-        <h4>
-          symp-todo-list
-        </h4>
+    <AppWrapper>
+      <Navbar>
+        <Container>
+          <Navbar.Brand href="#home">
+            <img
+              alt=""
+              src={symtodoLogo}
+              width="auto"
+              height="50"
+              className="d-inline-block align-top"
+            />{' '}
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+      <div className="main-content">
+        {/* <TaskList tasksData={tasksData} /> */}
+        <TaskDetails task={tasksData[0]} />
       </div>
-      <div className="main-area">
-        <div className="main-content">
-          <TaskList />
-        </div>
-        <div className="main-secondary">
-          <span>logs</span>
-          <ListGroup variant="flush">
-              <ListGroup.Item>
-                <Form.Check 
-                  type='radio'
-                  label='8/24/22'
-                />
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Form.Check 
-                  type='radio'
-                  label='8/24/22'
-                />
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Form.Check 
-                  type='radio'
-                  label='8/24/22'
-                />
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Form.Check 
-                  type='radio'
-                  label='8/24/22'
-                />
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Form.Check 
-                  type='radio'
-                  label='8/24/22'
-                />
-              </ListGroup.Item>
-          </ListGroup>
-        </div>
-      </div>
-    </div>
+    </AppWrapper>
   )
 }
 
