@@ -1,4 +1,10 @@
 import { useState } from 'react'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 import symtodoLogo from './assets/logo3.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/styles.css'
@@ -107,25 +113,41 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <AppWrapper>
-      <Navbar>
-        <Container>
-          <Navbar.Brand href="#home">
-            <img
-              alt=""
-              src={symtodoLogo}
-              width="auto"
-              height="50"
-              className="d-inline-block align-top"
-            />{' '}
-          </Navbar.Brand>
-        </Container>
-      </Navbar>
-      <div className="main-content">
-        {/* <TaskList tasksData={tasksData} /> */}
-        <TaskDetails task={tasksData[0]} />
-      </div>
-    </AppWrapper>
+    <Router>
+      <AppWrapper>
+        <Navbar>
+          <Container>
+            <Navbar.Brand href="#home">
+              <img
+                alt=""
+                src={symtodoLogo}
+                width="auto"
+                height="50"
+                className="d-inline-block align-top"
+              />{' '}
+            </Navbar.Brand>
+          </Container>
+          <ul>
+            <li>
+              <Link to="/">List</Link>
+            </li>
+            <li>
+              <Link to="/task-details">Details</Link>
+            </li>
+          </ul>
+        </Navbar>
+        <div className="main-content">
+          <Routes>
+            <Route exact path="/">
+              <TaskList tasksData={tasksData} />
+            </Route>
+            <Route path="/task-details">
+              <TaskDetails task={tasksData[0]} />
+            </Route>
+          </Routes>
+        </div>
+      </AppWrapper>
+    </Router>
   )
 }
 
