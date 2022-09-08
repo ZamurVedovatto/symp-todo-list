@@ -49,6 +49,9 @@ margin: .25rem;
     }
     .todo-list, .status-list {
       padding: .5rem 0 .25rem;
+      span {
+        font-weight: bold;
+      }
     }
   }
   .card-footer {
@@ -88,9 +91,11 @@ function TaskDetails({task}) {
             </a>
           </div>
           <div className="todo-list">
+            <span>To Do list</span>
             <Checklist listData={task.todos} />
           </div>
           <div className="status-list">
+            <span>Current Status</span>
             <Checklist listData={task.status} />
           </div>
         </Card.Body>

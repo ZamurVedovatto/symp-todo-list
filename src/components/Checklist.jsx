@@ -1,3 +1,6 @@
+// https://codesandbox.io/s/todo-list-hooks-ebfgw?file=/src/ToDo.js
+// https://www.educative.io/blog/react-hooks-tutorial-todo-list
+
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Form } from 'react-bootstrap'
@@ -12,49 +15,35 @@ const ChecklistWrapper = styled.div`
   }
 `
 
-// todos: [
-//   {
-//     title: 'fix buttons position',
-//     done: true
-//   },
-//   {
-//     title: 'fix buttons position',
-//     done: false
-//   },
-//   {
-//     title: 'fix buttons position',
-//     done: false
-//   },
-// ],
+import data from "./data.json";
+
 
 function Checklist({listData}) {
-  const [checked, setChecked] = useState([]);
+  const [ toDoList, setToDoList ] = useState(data);
 
-  const handleCheck = (event) => {
-    console.log(event)
-    var updatedList = [...checked];
-    if (event.target.checked) {
-      updatedList = [...checked, event.target.value];
-    } else {
-      updatedList.splice(checked.indexOf(event.target.value), 1);
-    }
-    setChecked(updatedList);
-  };
+  const handleToggle = (e) => {
+    e.preventDefault();
+    let id = e.currentTarget.id;
+    let mapped = listData.map(task => {
+      return task.id === Number(id) ? { ...task, done: !task.done } : { ...task};
+    });
+    setToDoList(mapped);
+  }
 
-  const isChecked = (item) => checked.includes(item) ? true : false;
+  const handleFilter = () => {
+    let filtered = toDoList.filter(task => {
+      return !task.done;
+    });
+    setToDoList(filtered);
+  }
 
   return (
     <ChecklistWrapper className="checkList">
       <div className="list-container">
         {listData.map((item, index) => (
-          <Form.Check
-            key={index}
-            type="checkbox"
-            id={`${item}`}
-            label={`${item.title}`}
-            checked={isChecked(item)}
-            onChange={handleCheck}
-          />
+          <div id={todo.id} key={todo.id + todo.task} name="todo" value={todo.id} onClick={handleToggle} className={todo.done ? "todo strike" : "todo"}>
+            {todo.task}
+          </div>
         ))}
       </div>
     </ChecklistWrapper>
