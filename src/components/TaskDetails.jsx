@@ -8,18 +8,13 @@ import Checklist from './Checklist'
 
 import dataJSON from "./data.json";
 
-
 function TaskDetails() {
   const [ task, setTask ] = useState(dataJSON[0])
   const [ todos, setTodos ] = useState([])
+  const [ status, setStatus ] = useState([])
   console.log(task.todos)
-  
-  useEffect(() => {
-    setTodos(task.todos)
-    console.log(todos)
-  }, [task, setTask, todos, setTodos])
-  
 
+  
   return (
     <TaskDetailsWrapper>
       <Card className={`${task.done ? "done" : ""}`}>
@@ -42,12 +37,12 @@ function TaskDetails() {
           </div>
           <div className="todo-list">
             <span>To Do list</span>
-            <Checklist toDoList={task.todos} />
+            <Checklist setTodos={setTodos} toDoList={task.todos} />
           </div>
-          <div className="status-list">
+          {/* <div className="status-list">
             <span>Current Status</span>
-            <Checklist toDoList={task.status} />
-          </div>
+            <Checklist setTodos={setTodos} toDoList={task.status} />
+          </div> */}
         </Card.Body>
         <Card.Footer className="text-muted">
           <Button variant="light">Back</Button>{' '}

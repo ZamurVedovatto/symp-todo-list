@@ -1,39 +1,9 @@
-.App {
-    .navbar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        h4 {
-            color: blue;
-        }
-    }
-    .main-area {
-        display: flex;
-        column-gap: 1rem;
-        padding: 1rem 3rem;
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            padding: 1rem 3rem;
-            border: 1px solid lightblue;
-            align-items: flex-start;
-            justify-content: flex-start;
-            span {
-                ul {
-                    li {
-                        
-                    }
-                }
-            }
-        }
-        .main-secondary {
-            padding: 1rem 3rem;
-            border: 1px solid lightgreen;
-            ul {
-                li {
+// sass --watch input.scss output.css
 
-                }
-            }
-        }
-    }
+.strike {
+    text-decoration: line-through;
+}
+
+.todo {
+    cursor: pointer;
 }

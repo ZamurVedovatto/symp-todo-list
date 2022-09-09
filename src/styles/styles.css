@@ -1,27 +1,9 @@
-.App .navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.strike {
+  text-decoration: line-through;
 }
-.App .navbar h4 {
-  color: blue;
-}
-.App .main-area {
-  display: flex;
-  column-gap: 1rem;
-  padding: 1rem 3rem;
-}
-.App .main-area .main-content {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 3rem;
-  border: 1px solid lightblue;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.App .main-area .main-secondary {
-  padding: 1rem 3rem;
-  border: 1px solid lightgreen;
+
+.todo {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=styles.css.map */

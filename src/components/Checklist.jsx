@@ -7,24 +7,24 @@ import { ChecklistWrapper } from './../assets/styles'
 
 import TodoItem from './TodoItem'
 
-function Checklist({toDoList}) {
-
+function Checklist({toDoList, setTodos}) {
   console.log("Checklist", toDoList)
-  // const handleToggle = (e) => {
-  //   e.preventDefault();
-  //   let id = e.currentTarget.id;
-  //   let mapped = toDoList.map(task => {
-  //     return task.id === Number(id) ? { ...task, done: !task.done } : { ...task};
-  //   });
-  //   setToDoList(mapped);
-  // }
 
-  // const handleFilter = () => {
-  //   let filtered = toDoList.filter(task => {
-  //     return !task.done;
-  //   });
-  //   setToDoList(filtered);
-  // }
+  const handleToggle = (e) => {
+    e.preventDefault();
+    let id = e.currentTarget.id;
+    let mapped = toDoList.map(task => {
+      return task.title === (title) ? { ...task, done: !task.done } : { ...task};
+    });
+    setToDoList(mapped);
+  }
+
+  const handleFilter = () => {
+    let filtered = toDoList.filter(task => {
+      return !task.done;
+    });
+    setToDoList(filtered);
+  }
 
   return (
     <ChecklistWrapper className="checkList">
@@ -32,7 +32,7 @@ function Checklist({toDoList}) {
         <div>
             {toDoList.map((todo, i) => {
                 return (
-                  <TodoItem key={i} todo={todo} />
+                  <TodoItem key={i} todo={todo} handleToggle={handleToggle} handleFilter={handleFilter} />
                 )
             })}
         </div>
