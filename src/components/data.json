@@ -20,8 +20,8 @@
       }
     ],
     "startedDate": "08/08/2022",
-    "done": true,
-    "finishedDate": "20/09/2022",
+    "done": false,
+    "finishedDate": "",
     "status": [
       {
         "title": "awaiting christians code review 1",
